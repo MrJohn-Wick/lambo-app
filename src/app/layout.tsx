@@ -1,4 +1,4 @@
-import './globals.css';
+import '@lambo/styles/globals.scss';
 
 export default function RootLayout({
   children,
