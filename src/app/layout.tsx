@@ -1,3 +1,6 @@
+import '@lambo/styles/globals.scss';
+
+
 function Layout(props: any) {
   return (
     <html>
