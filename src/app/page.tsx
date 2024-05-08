@@ -1,13 +1,8 @@
-import Header from "@lambo/components/Header";
-
 const Home = ({}) => {
   return (
-    <>
-      <Header />
-      <div className="container">
-        #Home page
-      </div>
-    </>
+    <div>
+      #Home page
+    </div>
   );
 };
 
