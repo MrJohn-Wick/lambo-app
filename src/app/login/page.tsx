@@ -1,17 +1,7 @@
-import type { ReactElement } from 'react';
-import Layout from './layout';
-import type { NextPageWithLayout } from '../_app';
- 
-const Page: NextPageWithLayout = () => {
-  return <div className='container'>hello world</div>;
-}
- 
-Page.getLayout = function getLayout(page: ReactElement) {
+export default function Login() {
   return (
-    <Layout>
-      {page}
-    </Layout>
-  )
+    <div>
+      #Login Page
+    </div>
+  );
 }
- 
-export default Page;

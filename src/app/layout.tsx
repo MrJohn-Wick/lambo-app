@@ -1,15 +1,14 @@
 import '@lambo/styles/globals.scss';
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+
+function Layout(props: any) {
   return (
-    <html lang="en">
+    <html>
       <body>
-        {children}
+        <main>{props.children}</main>
       </body>
     </html>
-  );
+  )
 }
+
+export default Layout;
