@@ -1,6 +1,4 @@
-import '@lambo/styles/globals.scss';
-
-export default function RootLayout({
+export default function LoginLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -9,6 +7,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
+        Test login layout
       </body>
     </html>
   );
