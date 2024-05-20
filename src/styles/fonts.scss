@@ -1,0 +1,45 @@
+$fonts-url:  '../assets/fonts/';
+$font-file1: 'Normalidad-Text-Regular';
+$font-file2: 'Normalidad-Text-Medium';
+$font-file3: 'Normalidad-Text-Bold';
+
+$font-name1: 'Normalidad';
+
+@font-face {
+  font-family: $font-name1;
+  font-weight: normal;
+  font-style: normal;
+
+  src: url($fonts-url + $font-file1 + '.eot');
+  src: url($fonts-url + $font-file1 + '.eot?#iefix') format('embedded-opentype'),
+    url($fonts-url + $font-file1 + '.woff2') format('woff2'),
+    url($fonts-url + $font-file1 + '.ttf') format('truetype');
+    // url($fonts-url + $font-file1 + '.svg#' + $font-name1) format('svg');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $font-name1;
+  font-weight: 500;
+  font-style: normal;
+
+  src: url($fonts-url + $font-file2 + '.eot');
+  src: url($fonts-url + $font-file2 + '.eot?#iefix') format('embedded-opentype'),
+    url($fonts-url + $font-file2 + '.woff2') format('woff2'),
+    url($fonts-url + $font-file2 + '.ttf') format('truetype');
+  // url($fonts-url + $font-file2 + '.svg#' + $font-name1) format('svg');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $font-name1;
+  font-weight: 700;
+  font-style: normal;
+
+  src: url($fonts-url + $font-file3 + '.eot');
+  src: url($fonts-url + $font-file3 + '.eot?#iefix') format('embedded-opentype'),
+    url($fonts-url + $font-file3 + '.woff2') format('woff2'),
+    url($fonts-url + $font-file3 + '.ttf') format('truetype');
+    // url($fonts-url + $font-file3 + '.svg#' + $font-name1) format('svg');
+  font-display: swap;
+}

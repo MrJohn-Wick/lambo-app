@@ -6,7 +6,9 @@ export default function LoginLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <div className="container">
+          {children}
+        </div>
         Test login layout
       </body>
     </html>
