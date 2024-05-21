@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./.docker/app/Dockerfile
+    container_name: docker-next
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: "lambo-db"
+      POSTGRES_USER: "userlambo"
+      POSTGRES_PASSWORD: "lambopass"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.docker/postgres/data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:7.2
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "ashibeko@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "pgadminpwd"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - ./.docker/pgadmin-data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    restart: unless-stopped
