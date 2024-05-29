@@ -1,8 +1,12 @@
-export default function LoginLayout({
+import { auth } from "@lambo/auth";
+
+export default async function LoginLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode,
 }>) {
+  const session = await auth();
+
   return (
     <html lang="en">
       <body>
