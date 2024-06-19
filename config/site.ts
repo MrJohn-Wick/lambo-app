@@ -12,6 +12,10 @@ export const siteConfig = {
       label: "Login",
       href: "/login",
     },
+    {
+      label: "Streams",
+      href: "/streams",
+    },
   ],
   navMenuItems: [
     {
