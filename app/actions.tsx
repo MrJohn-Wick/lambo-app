@@ -1,5 +1,6 @@
 "use server";
 
+import { signIn, signOut } from '@lambo/lib/auth';
 import {
   AccessToken,
   IngressAudioEncodingPreset,
@@ -9,6 +10,9 @@ import {
   type CreateIngressOptions,
 } from "livekit-server-sdk";
 import { TrackSource } from "livekit-server-sdk/dist/proto/livekit_models";
+import { AuthError } from 'next-auth';
+import { redirect } from 'next/navigation';
+import { Router } from 'next/router';
 
 const ingressClient = new IngressClient(process.env.LIVEKIT_API_URL!);
 
@@ -76,7 +80,7 @@ export async function createIngress(
     };
   }
 
-  const ingress = await ingressClient.createIngress(ingressType, options);
+  const ingress = await ingrecredentialsssClient.createIngress(ingressType, options);
 
   return ingress;
 }
@@ -89,4 +93,43 @@ export async function resetIngresses() {
       await ingressClient.deleteIngress(ingress.ingressId);
     }
   }
+}
+
+export async function userLogin(prevState: unknown, formData: FormData) {
+  const {email, password} = {
+    email: formData.get('email') as string,
+    password: formData.get('password'),
+  }
+
+  if(!email || !password) {
+    return {
+      message: 'Invalid fields'
+    }
+  }
+
+  try {
+    await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+      // redirectTo: 'http://localhost:3001/profile',
+    })
+    redirect('/profile');
+  } catch (error) {
+    console.log("Action error", error);
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin": 
+          return { message: "Invalid credentials" }
+        default:
+          return { message: "Somthing went wrong!" }
+      }
+    }
+    throw error;
+  }
+
+}
+
+export async function userLogout() {
+  await signOut();
 }
