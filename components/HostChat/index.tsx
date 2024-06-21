@@ -1,43 +1,58 @@
 import { cn } from "@lambo/lib/utils";
 import { useChat } from "@livekit/components-react";
-import { useCallback, useMemo, useState, type KeyboardEvent } from "react";
-import { Button } from "./ui/button";
-import { Icons } from "./ui/icons";
-import { Textarea } from "./ui/textarea";
+import { useCallback, useEffect, useMemo, useState, type KeyboardEvent } from "react";
+import { Button } from "../ui/button";
+import { Icons } from "../ui/icons";
+// import { Textarea } from "./ui/textarea";
+import { Input } from "@nextui-org/react";
+import EmojiPicker from "emoji-picker-react";
+import { ChatSectionStyled, EmojiButtonStyled } from './styled';
 
 interface Props {
   participantName: string;
 }
 
 export default function Chat({ participantName }: Props) {
+  // const [isClient, setIsClient] = useState(false);
+  const [inputStr, setInputStr] = useState("");
+  const [isEmojiPickerShowed, setIsEmojiPickerShowed] = useState(false);
+
   const { chatMessages: messages, send } = useChat();
+  
+  // useEffect(() => {
+  //   setIsClient(true)
+  // }, []);
+
+  const onEmojiClick = (event: any, emojiObject: any) => {    
+    setInputStr((prevInput) => prevInput + event.emoji);
+    setIsEmojiPickerShowed(false);
+  };
 
   const reverseMessages = useMemo(
     () => messages.sort((a, b) => b.timestamp - a.timestamp),
     [messages]
   );
 
-  const [message, setMessage] = useState("");
-
   const onEnter = useCallback(
     (e: KeyboardEvent<HTMLTextAreaElement>) => {
       if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
-        if (message.trim().length > 0 && send) {
-          send(message).catch((err) => console.error(err));
-          setMessage("");
+        if (inputStr.trim().length > 0 && send) {
+          send(inputStr).catch((err) => console.error(err));
+          setInputStr("");
         }
       }
     },
-    [message, send]
+    [inputStr, send]
   );
 
   const onSend = useCallback(() => {
-    if (message.trim().length > 0 && send) {
-      send(message).catch((err) => console.error(err));
-      setMessage("");
+    if (inputStr.trim().length > 0 && send) {
+      send(inputStr).catch((err) => console.error(err));
+      setInputStr("");
+      setIsEmojiPickerShowed(false);
     }
-  }, [message, send]);
+  }, [send]);
 
   return (
     <>
@@ -65,22 +80,32 @@ export default function Chat({ participantName }: Props) {
           </div>
         ))}
       </div>
-      <div className="flex w-full gap-2">
-        <Textarea
-          value={message}
+      <ChatSectionStyled className="flex w-full gap-2">
+        {/* <img
+          src="https://icons.getbootstrap.com/assets/icons/emoji-smile.svg"
+          onClick={() => setShowPicker((val) => !val)}
+        /> */}
+        {isEmojiPickerShowed && 
+          <EmojiPicker onEmojiClick={onEmojiClick} />
+        }
+        <Input
+          value={inputStr}
           className="border-box h-10 bg-white dark:bg-zinc-900"
           onChange={(e) => {
-            setMessage(e.target.value);
+            setInputStr(e.target.value);
           }}
           onKeyDown={onEnter}
           placeholder="Type a message..."
         />
-        <Button disabled={message.trim().length === 0} onClick={onSend}>
+        <Button onClick={() => setIsEmojiPickerShowed(!isEmojiPickerShowed)}>
+          Emoji
+        </Button>
+        <Button disabled={inputStr.trim().length === 0} onClick={onSend}>
           <div className="flex items-center gap-2">
             <Icons.send className="h-4 w-4" />
           </div>
         </Button>
-      </div>
+      </ChatSectionStyled>
     </>
   );
 }
