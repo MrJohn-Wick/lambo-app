@@ -24,13 +24,13 @@ export const RegisterForm = () => {
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
     startTransition(() => {
-      register(values);
-      //   .then((data) => {
-      //     if(data.error)
-      //       setMessage(data.error);
-      //     else 
-      //       setMessage(data.message);
-      //   });
+      register(values)
+        .then((data) => {
+          if(data.error)
+            setMessage(data.error);
+          else 
+            setMessage(data.message);
+        });
     })
   }
 
