@@ -4,7 +4,7 @@ import { createStreamerToken } from "@lambo/app/actions";
 import { LiveKitRoom } from "@livekit/components-react";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
-import Chat from "./host-chat";
+import Chat from "./HostChat";
 import HostControls from "./host-controls";
 
 export default function HostChannel({ slug }: { slug: string }) {

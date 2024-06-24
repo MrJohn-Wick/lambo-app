@@ -8,7 +8,7 @@ import { faker } from "@faker-js/faker";
 import { LiveKitRoom } from "@livekit/components-react";
 import { jwtDecode, type JwtPayload } from "jwt-decode";
 import { useEffect, useMemo, useState } from "react";
-import Chat from "./host-chat";
+import Chat from "./HostChat";
 
 export default function WatchChannel({ slug }: { slug: string }) {
   const [viewerToken, setViewerToken] = useState("");

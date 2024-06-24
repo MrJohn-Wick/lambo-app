@@ -4,6 +4,7 @@ import { siteConfig } from "@lambo/config/site";
 import { title, subtitle } from "@lambo/components/primitives";
 
 import Layout from "./layout";
+import EmojiSection from "./components/EmojiSection";
 
 export default function Home() {
   return (
