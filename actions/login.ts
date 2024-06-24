@@ -4,6 +4,7 @@ import * as z from 'zod';
 import { signIn } from '@lambo/lib/auth';
 import { LoginSchema } from '@lambo/schemas';
 import { AuthError } from 'next-auth';
+import { DEFAULT_LOGIN_REDIRECT } from '@lambo/routes';
 
 export async function login(values: z.infer<typeof LoginSchema>) {
   const validatedFields = LoginSchema.safeParse(values);
@@ -12,17 +13,19 @@ export async function login(values: z.infer<typeof LoginSchema>) {
     return { error: "Invalid fields" }
   }
 
-  const { email, password } = values;
+  const { email, password } = validatedFields.data;
+
   try {
     await signIn('credentials', {
       email,
       password,
       redirect: false,
-      // redirectTo: '/profile',
+      redirectTo: DEFAULT_LOGIN_REDIRECT,
     })
     return { message: "You are entered" };
   } catch (error) {
     if (error instanceof AuthError) {
+      console.log(error.type);
       switch (error.type) {
         case "CredentialsSignin": 
           return { error: "Invalid credentials" }

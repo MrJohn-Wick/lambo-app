@@ -65,6 +65,7 @@ export const LoginForm = () => {
               render={({field}) => (
                 <Input
                   {...field}
+                  type="password"
                   label="Password"
                   placeholder="*****"
                   disabled={isPending}

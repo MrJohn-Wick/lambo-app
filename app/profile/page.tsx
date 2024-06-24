@@ -1,7 +1,6 @@
 import Layout from "@lambo/components/layouts/withHeaderFooter";
 import { auth, signOut } from '@lambo/lib/auth';
 import { Image } from "@nextui-org/react";
-import { redirect } from 'next/navigation';
 
 export default async function ProfilePage() {
   const session = await auth();
@@ -9,16 +8,9 @@ export default async function ProfilePage() {
   return (
     <Layout>
       <div>
-        { JSON.stringify(session) }
-        <form action={async () => {
-          "use server";
-
-          await signOut();
-        }}>
-          <button type="submit">
-            Sign out
-          </button>
-        </form>
+        <button type="submit">
+          Sign out
+        </button>
       </div>
       <div className="grid grid-rows-3 grid-flow-col gap-4">
         <div className="row-span-3">
