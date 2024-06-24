@@ -1,9 +1,5 @@
-'use client'
-
+import { LoginForm } from '@lambo/components/auth/login-form';
 import { title } from "@lambo/components/primitives";
-import { Button } from '@lambo/components/ui/button';
-import { useFormState, useFormStatus } from 'react-dom';
-import { userLogin } from '../actions';
 // import { Select, SelectItem } from "@nextui-org/select";
 
 export default async function LoginPage() {
@@ -32,31 +28,9 @@ export default async function LoginPage() {
     { key: "crocodile", label: "Crocodile" },
   ];
 
-  const { pending } = useFormStatus();
-  const [ state, dispatch ] = useFormState(userLogin, {
-    message: ''
-  });
-
   return (
     <div>
-      <h1 className={title()}>Login</h1>
-
-      <form action={dispatch}>
-        <div>
-          { state.message }
-        </div>
-        <div>
-          <label htmlFor="signin-email" className=''>Email</label>
-          <input id="signin-email" name="email" type="text" required />
-        </div>
-
-        <div>
-          <label htmlFor="signin-password">Password</label>
-          <input id="signin-password" name="password" type="password" required />
-        </div>
-
-        <Button type="submit" disabled={pending}>Login</Button>
-      </form>
+      <LoginForm />
       {/* <div className="w-full flex flex-row flex-wrap gap-4">
         {colors.map((color) => (
           <Select

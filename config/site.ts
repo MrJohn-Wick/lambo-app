@@ -35,5 +35,6 @@ export const siteConfig = {
     // sponsor: "https://patreon.com/jrgarciadev",
     profile: "/profile",
     login: "/login",
+    register: "/register",
   },
 };

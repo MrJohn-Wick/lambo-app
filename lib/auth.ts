@@ -27,7 +27,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {},
       },
       authorize: async (credentials) => {
-        console.log("Credentials", credentials);
+        // const user = await fetch('http://localhost:3000/user/signin')
         if (credentials.password == '12345') {
           return {
             id: '1',
@@ -39,4 +39,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   session: { strategy: "jwt" },
+  callbacks: {
+    async session({ token, session })  {
+      console.log("AUTH SESSION");
+      return session;
+    },
+    async jwt({ token }) {
+      console.log("AUTH JWT");
+      return token;
+    },
+    async redirect({ url, baseUrl }) {
+      console.log("AUTH REDIRECT", url);
+      if (url.startsWith("/")) return `${baseUrl}${url}`
+
+      // Allows callback URLs on the same origin
+      if (new URL(url).origin === baseUrl) return url
+  
+      return baseUrl    
+    }
+  }
 });

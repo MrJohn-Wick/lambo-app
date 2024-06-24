@@ -6,7 +6,11 @@ export default function LoginLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <div className='flex h-full flex-col items-center justify-center bg-amber-100'>
+      {children}
+    </div>
+  );
 }
 
 {
