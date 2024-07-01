@@ -23,7 +23,6 @@ export default function ChannelInfo({
             {participant && (
               <div className="absolute z-10 h-11 w-11 animate-ping rounded-full bg-red-600 dark:bg-red-400" />
             )}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               alt={streamerIdentity}
               className={cn(

@@ -41,7 +41,6 @@ export default function Presence({
             <li key={participant.identity}>
               <div className="flex items-center gap-3">
                 <div className={"h-6 w-6 rounded-full bg-slate-600"}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     alt={participant.identity}
                     className="rounded-full"

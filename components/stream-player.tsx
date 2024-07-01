@@ -142,6 +142,8 @@ export const StreamPlayer = ({ participant }: { participant: Participant }) => {
             <div className="flex items-center justify-center gap-4">
               <Tooltip>
                 <TooltipTrigger>
+                  {/* @ts-ignore */}
+                  {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
                   <div className="text-white" onClick={onFullScreen}>
                     {isFullScreen ? (
                       <Icons.minimize className="h-5 w-5 hover:scale-110 hover:transition-all" />
