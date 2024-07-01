@@ -36,7 +36,7 @@ export default function Chat({ participantName }: Props) {
   );
 
   const onEnter = useCallback(
-    (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    (e: any /*KeyboardEvent<HTMLTextAreaElement>*/) => {
       if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
         if (inputStr.trim().length > 0 && send) {
