@@ -1,5 +1,6 @@
 import { cn } from "@lambo/lib/utils";
 import { useRemoteParticipant } from "@livekit/components-react";
+
 import Presence from "./presence";
 import { Icons } from "./ui/icons";
 
@@ -24,12 +25,12 @@ export default function ChannelInfo({
             )}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              alt={streamerIdentity}
               className={cn(
                 "z-20 h-16 w-16 rounded-full border-2 border-white bg-gray-500 dark:border-zinc-900",
-                participant && "ring-2 ring-red-600"
+                participant && "ring-2 ring-red-600",
               )}
               src={`https://api.dicebear.com/5.x/open-peeps/svg?seed=${streamerIdentity}&size=64&face=smile,cute`}
-              alt={streamerIdentity}
             />
 
             {participant && (

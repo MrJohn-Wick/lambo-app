@@ -3,8 +3,6 @@ import { Metadata, Viewport } from "next";
 import { siteConfig } from "@lambo/config/site";
 import { Navbar } from "@lambo/components/navbar";
 
-import { Providers } from "../providers";
-
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,

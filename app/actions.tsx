@@ -19,7 +19,7 @@ export async function createStreamerToken(slug: string) {
     {
       // HACK: should really be the streamer's name
       identity: slug,
-    }
+    },
   );
 
   token.addGrant({
@@ -38,7 +38,7 @@ export async function createViewerToken(roomName: string, identity: string) {
     process.env.LIVEKIT_API_SECRET,
     {
       identity: identity,
-    }
+    },
   );
 
   token.addGrant({
@@ -53,7 +53,7 @@ export async function createViewerToken(roomName: string, identity: string) {
 
 export async function createIngress(
   roomSlug: string,
-  ingressType: IngressInput
+  ingressType: IngressInput,
 ) {
   const options: CreateIngressOptions = {
     name: roomSlug,

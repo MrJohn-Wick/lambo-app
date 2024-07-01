@@ -1,6 +1,5 @@
 "use client";
-import { LoginForm } from '@lambo/components/auth/login-form';
-import { title } from "@lambo/components/primitives";
+import { LoginForm } from "@lambo/components/auth/login-form";
 // import { Select, SelectItem } from "@nextui-org/select";
 
 export default function LoginPage() {

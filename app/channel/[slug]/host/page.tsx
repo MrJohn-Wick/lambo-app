@@ -14,5 +14,9 @@ interface PageProps {
 }
 
 export default function ChannelHostPage({ params: { slug } }: PageProps) {
-  return <Layout><HostChannel slug={slug} /></Layout>;
+  return (
+    <Layout>
+      <HostChannel slug={slug} />
+    </Layout>
+  );
 }

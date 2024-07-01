@@ -26,20 +26,20 @@ export default function SetupPage({ searchParams: { channel } }: PageProps) {
           After setting up your ingress endpoint, you should receive two values:
           a RTMP or WHIP server URL and a stream key. Download and install{" "}
           <Link
-            href="https://obsproject.com/"
-            target="_blank"
-            rel="noreferrer"
             className="text-violet-500 dark:text-violet-300 underline"
+            href="https://obsproject.com/"
+            rel="noreferrer"
+            target="_blank"
           >
             OBS Studio
           </Link>{" "}
           and configure your stream settings as follows:
         </p>
         <Image
-          width={1200}
-          height={600}
           alt="OBS Studio settings window"
+          height={600}
           src="https://user-images.githubusercontent.com/304392/225103865-c0c3accb-600f-411d-814e-8f6384784b62.png"
+          width={1200}
         />
         <p>
           When you&rsquo;re done with setting up your stream and ready to

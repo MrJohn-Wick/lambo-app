@@ -1,12 +1,14 @@
 import { cn } from "@lambo/lib/utils";
 import { useChat } from "@livekit/components-react";
-import { useCallback, useEffect, useMemo, useState, type KeyboardEvent } from "react";
+import { useCallback, useMemo, useState, type KeyboardEvent } from "react";
+import { Input } from "@nextui-org/react";
+import EmojiPicker from "emoji-picker-react";
+
 import { Button } from "../ui/button";
 import { Icons } from "../ui/icons";
 // import { Textarea } from "./ui/textarea";
-import { Input } from "@nextui-org/react";
-import EmojiPicker from "emoji-picker-react";
-import { ChatSectionStyled, EmojiButtonStyled } from './styled';
+
+import { ChatSectionStyled } from "./styled";
 
 interface Props {
   participantName: string;
@@ -18,19 +20,19 @@ export default function Chat({ participantName }: Props) {
   const [isEmojiPickerShowed, setIsEmojiPickerShowed] = useState(false);
 
   const { chatMessages: messages, send } = useChat();
-  
+
   // useEffect(() => {
   //   setIsClient(true)
   // }, []);
 
-  const onEmojiClick = (event: any, emojiObject: any) => {    
+  const onEmojiClick = (event: any, emojiObject: any) => {
     setInputStr((prevInput) => prevInput + event.emoji);
     setIsEmojiPickerShowed(false);
   };
 
   const reverseMessages = useMemo(
     () => messages.sort((a, b) => b.timestamp - a.timestamp),
-    [messages]
+    [messages],
   );
 
   const onEnter = useCallback(
@@ -43,7 +45,7 @@ export default function Chat({ participantName }: Props) {
         }
       }
     },
-    [inputStr, send]
+    [inputStr, send],
   );
 
   const onSend = useCallback(() => {
@@ -65,7 +67,7 @@ export default function Chat({ participantName }: Props) {
                   className={cn(
                     "text-xs font-semibold",
                     participantName === message.from?.identity &&
-                      "text-indigo-500"
+                      "text-indigo-500",
                   )}
                 >
                   {message.from?.identity}
@@ -85,17 +87,15 @@ export default function Chat({ participantName }: Props) {
           src="https://icons.getbootstrap.com/assets/icons/emoji-smile.svg"
           onClick={() => setShowPicker((val) => !val)}
         /> */}
-        {isEmojiPickerShowed && 
-          <EmojiPicker onEmojiClick={onEmojiClick} />
-        }
+        {isEmojiPickerShowed && <EmojiPicker onEmojiClick={onEmojiClick} />}
         <Input
-          value={inputStr}
           className="border-box h-10 bg-white dark:bg-zinc-900"
+          placeholder="Type a message..."
+          value={inputStr}
           onChange={(e) => {
             setInputStr(e.target.value);
           }}
           onKeyDown={onEnter}
-          placeholder="Type a message..."
         />
         <Button onClick={() => setIsEmojiPickerShowed(!isEmojiPickerShowed)}>
           Emoji

@@ -8,7 +8,7 @@ export function NavBar() {
     <header className="sticky top-0 z-40 w-full border-b  bg-background px-4 ">
       <div className="mx-auto flex h-12 items-center space-x-4 sm:justify-between sm:space-x-0">
         <div className="flex gap-6 md:gap-10">
-          <Link href="/" className="flex items-center gap-2">
+          <Link className="flex items-center gap-2" href="/">
             <Icons.flask className="h-4 w-4 text-violet-500 dark:text-violet-400" />
             <span className="text-violet-500 font-bold dark:text-violet-400">
               Cast
@@ -19,8 +19,8 @@ export function NavBar() {
           <nav className="flex items-center space-x-1">
             <Link
               href="https://github.com/livekit-examples/livestream"
-              target="_blank"
               rel="noreferrer"
+              target="_blank"
             >
               <div
                 className={buttonVariants({
@@ -35,8 +35,8 @@ export function NavBar() {
             </Link>
             <Link
               href="https://twitter.com/livekitted"
-              target="_blank"
               rel="noreferrer"
+              target="_blank"
             >
               <div
                 className={buttonVariants({

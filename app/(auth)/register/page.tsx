@@ -1,6 +1,6 @@
 "use client";
 
-import { RegisterForm } from '@lambo/components/auth/register-form';
+import { RegisterForm } from "@lambo/components/auth/register-form";
 
 export default function LoginPage() {
   return (
