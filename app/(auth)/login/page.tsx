@@ -1,5 +1,5 @@
 "use client";
-import { title } from "@lambo/components/primitives";
+import { LoginForm } from "@lambo/components/auth/login-form";
 // import { Select, SelectItem } from "@nextui-org/select";
 
 export default function LoginPage() {
@@ -29,8 +29,8 @@ export default function LoginPage() {
   ];
 
   return (
-    <div>
-      <h1 className={title()}>Login</h1>
+    <div className="flex items-center justify-center bg-slate-200 py-5">
+      <LoginForm />
       {/* <div className="w-full flex flex-row flex-wrap gap-4">
         {colors.map((color) => (
           <Select

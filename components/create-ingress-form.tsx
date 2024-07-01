@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
 import { Button } from "./ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Icons } from "./ui/icons";
@@ -45,7 +46,7 @@ export default function CreateIngressForm({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const ingressInfo = await createIngress(
       values.roomSlug,
-      parseInt(values.ingressType)
+      parseInt(values.ingressType),
     );
 
     setIngress(ingressInfo);
@@ -69,11 +70,11 @@ export default function CreateIngressForm({
           <h1 className="text-xl font-medium">Create an ingress endpoint</h1>
           <Form {...form}>
             <form
+              className="flex flex-col gap-4"
               onSubmit={(e) => {
                 e.preventDefault();
                 void form.handleSubmit(onSubmit)(e);
               }}
-              className="flex flex-col gap-4"
             >
               <FormField
                 control={form.control}
@@ -95,9 +96,9 @@ export default function CreateIngressForm({
                     <FormLabel>Ingress Type</FormLabel>
                     <FormControl>
                       <RadioGroup
-                        onValueChange={field.onChange}
-                        defaultValue={String(field.value)}
                         className="flex flex-col space-y-1"
+                        defaultValue={String(field.value)}
+                        onValueChange={field.onChange}
                       >
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
@@ -120,7 +121,7 @@ export default function CreateIngressForm({
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="mt-2">
+              <Button className="mt-2" type="submit">
                 Submit
               </Button>
             </form>

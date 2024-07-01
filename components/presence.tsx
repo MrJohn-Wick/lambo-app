@@ -1,11 +1,20 @@
 import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
-import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "./ui/dialog";
-
 import { useParticipants } from "@livekit/components-react";
 import { useState } from "react";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from "./ui/dialog";
 import { Icons } from "./ui/icons";
 
-export default function Presence({ participantIdentity }: { participantIdentity: string }) {
+export default function Presence({
+  participantIdentity,
+}: {
+  participantIdentity: string;
+}) {
   const [open, setOpen] = useState(false);
   const participants = useParticipants();
 
@@ -21,10 +30,11 @@ export default function Presence({ participantIdentity }: { participantIdentity:
         <DialogHeader>
           <DialogTitle>
             <div className="border-b pb-4 text-lg font-bold">
-              {participants.length} {participants.length > 1 ? "people" : "person"} here
+              {participants.length}{" "}
+              {participants.length > 1 ? "people" : "person"} here
             </div>
           </DialogTitle>
-          <DialogDescription></DialogDescription>
+          <DialogDescription />
         </DialogHeader>
         <ul className="space-y-2">
           {participants.map((participant) => (
@@ -33,9 +43,9 @@ export default function Presence({ participantIdentity }: { participantIdentity:
                 <div className={"h-6 w-6 rounded-full bg-slate-600"}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
+                    alt={participant.identity}
                     className="rounded-full"
                     src={`https://api.dicebear.com/5.x/open-peeps/svg?seed=${participant.identity}&size=64&face=smile,cute`}
-                    alt={participant.identity}
                   />
                 </div>
 

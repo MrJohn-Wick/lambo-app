@@ -2,7 +2,7 @@ import * as React from "react";
 import { IconSvgProps } from "@lambo/types";
 
 export const Logo: React.FC<IconSvgProps> = ({ ...props }) => {
-  console.log(props, ' <<<<<<<<<< props');
+  console.log(props, " <<<<<<<<<< props");
 
   return (
     <svg

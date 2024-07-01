@@ -18,6 +18,7 @@ export default function HostControls({ slug }: Props) {
 
   const createTracks = async () => {
     const tracks = await createLocalTracks({ audio: true, video: true });
+
     tracks.forEach((track) => {
       switch (track.kind) {
         case Track.Kind.Video: {
@@ -81,8 +82,8 @@ export default function HostControls({ slug }: Props) {
           {isPublishing && !isUnpublishing ? (
             <div className="flex items-center gap-1">
               <span className="relative mr-1 flex h-3 w-3">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
-                <span className="relative inline-flex h-3 w-3 rounded-full bg-red-500"></span>
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-red-500" />
               </span>
               LIVE
             </div>
@@ -97,18 +98,18 @@ export default function HostControls({ slug }: Props) {
         <div className="flex gap-2">
           {isPublishing ? (
             <Button
-              size="sm"
               className="bg-red-600 hover:bg-red-700"
-              onClick={() => void togglePublishing()}
               disabled={isUnpublishing}
+              size="sm"
+              onClick={() => void togglePublishing()}
             >
               {isUnpublishing ? "Stopping..." : "Stop stream"}
             </Button>
           ) : (
             <Button
+              className="animate-pulse"
               size="sm"
               onClick={() => void togglePublishing()}
-              className="animate-pulse"
             >
               Start stream
             </Button>
@@ -116,7 +117,7 @@ export default function HostControls({ slug }: Props) {
         </div>
       </div>
       <div className="aspect-video rounded-sm border bg-neutral-800">
-        <video ref={previewVideoEl} width="100%" height="100%" />
+        <video ref={previewVideoEl} height="100%" width="100%" />
       </div>
       <div>
         <div className="flex items-center gap-2">

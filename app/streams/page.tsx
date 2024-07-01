@@ -19,7 +19,9 @@ export default function IndexPage() {
             </h1>
           </div>
           <div className="flex flex-col gap-6 text-foreground">
-            <p>To get started, enter a channel ID below and select an option:</p>
+            <p>
+              To get started, enter a channel ID below and select an option:
+            </p>
             <GetStartedForm />
           </div>
         </div>

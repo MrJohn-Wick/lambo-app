@@ -8,6 +8,7 @@ import { faker } from "@faker-js/faker";
 import { LiveKitRoom } from "@livekit/components-react";
 import { jwtDecode, type JwtPayload } from "jwt-decode";
 import { useEffect, useMemo, useState } from "react";
+
 import Chat from "./HostChat";
 
 export default function WatchChannel({ slug }: { slug: string }) {
@@ -29,13 +30,17 @@ export default function WatchChannel({ slug }: { slug: string }) {
 
         if (payload.exp) {
           const expiry = new Date(payload.exp * 1000);
+
           if (expiry < new Date()) {
             sessionStorage.removeItem(SESSION_VIEWER_TOKEN_KEY);
             const token = await createViewerToken(slug, fakeName);
+
             setViewerToken(token);
             const jti = jwtDecode(token)?.jti;
+
             jti && setViewerName(jti);
             sessionStorage.setItem(SESSION_VIEWER_TOKEN_KEY, token);
+
             return;
           }
         }
@@ -47,12 +52,15 @@ export default function WatchChannel({ slug }: { slug: string }) {
         setViewerToken(sessionToken);
       } else {
         const token = await createViewerToken(slug, fakeName);
+
         setViewerToken(token);
         const jti = jwtDecode(token)?.jti;
+
         jti && setViewerName(jti);
         sessionStorage.setItem(SESSION_VIEWER_TOKEN_KEY, token);
       }
     };
+
     void getOrCreateViewerToken();
   }, [fakeName, slug]);
 
@@ -62,9 +70,9 @@ export default function WatchChannel({ slug }: { slug: string }) {
 
   return (
     <LiveKitRoom
-      token={viewerToken}
-      serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_WS_URL}
       className="flex flex-1 flex-col"
+      serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_WS_URL}
+      token={viewerToken}
     >
       <WatchingAsBar viewerName={viewerName} />
       <div className="flex h-full flex-1">

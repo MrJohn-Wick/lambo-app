@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { z } from "zod";
+
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -36,30 +37,30 @@ export default function HomeForm() {
     <div className="flex items-center gap-2">
       <Input
         className="w-[200px]"
-        type="text"
         placeholder="example-stream"
+        type="text"
+        value={slug}
         onChange={(e) => {
           setSlug(e.target.value);
         }}
-        value={slug}
       />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="secondary" disabled={!validSlug}>
+          <Button disabled={!validSlug} variant="secondary">
             Join as host
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem
-            onClick={() => router.push(`/setup?channel=${slug}`)}
             className="flex items-center gap-2"
+            onClick={() => router.push(`/setup?channel=${slug}`)}
           >
             <Icons.uploadCloud className="h-4 w-4" />
             Broadcast via LKC Ingress
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() => router.push(`/channel/${slug}/host`)}
             className="flex items-center gap-2"
+            onClick={() => router.push(`/channel/${slug}/host`)}
           >
             <Icons.webcam className="h-4 w-4" />
             Broadcast from current device
@@ -67,8 +68,8 @@ export default function HomeForm() {
         </DropdownMenuContent>
       </DropdownMenu>
       <Button
-        variant="secondary"
         disabled={!validSlug}
+        variant="secondary"
         onClick={() => router.push(`/channel/${slug}`)}
       >
         Join as viewer

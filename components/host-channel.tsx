@@ -4,6 +4,7 @@ import { createStreamerToken } from "@lambo/app/actions";
 import { LiveKitRoom } from "@livekit/components-react";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
+
 import Chat from "./HostChat";
 import HostControls from "./host-controls";
 
@@ -23,11 +24,14 @@ export default function HostChannel({ slug }: { slug: string }) {
 
         if (payload.exp) {
           const expiry = new Date(payload.exp * 1000);
+
           if (expiry < new Date()) {
             sessionStorage.removeItem(SESSION_STREAMER_TOKEN_KEY);
             const token = await createStreamerToken(slug);
+
             setStreamerToken(token);
             sessionStorage.setItem(SESSION_STREAMER_TOKEN_KEY, token);
+
             return;
           }
         }
@@ -35,18 +39,20 @@ export default function HostChannel({ slug }: { slug: string }) {
         setStreamerToken(sessionToken);
       } else {
         const token = await createStreamerToken(slug);
+
         setStreamerToken(token);
         sessionStorage.setItem(SESSION_STREAMER_TOKEN_KEY, token);
       }
     };
+
     void getOrCreateStreamerToken();
   }, [slug]);
 
   return (
     <LiveKitRoom
-      token={streamerToken}
-      serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_WS_URL}
       className="flex flex-1 flex-col"
+      serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_WS_URL}
+      token={streamerToken}
     >
       <div className="flex h-full flex-1">
         <div className="flex-1 flex-col p-8">
