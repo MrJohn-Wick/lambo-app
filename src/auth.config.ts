@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 // @ts-ignore
 import { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";

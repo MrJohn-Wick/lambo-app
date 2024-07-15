@@ -26,19 +26,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     // @ts-ignore
     async signOut({ token }) {
       console.log("SignOut", token);
-      const raw_token = token.access_token;
-      const formData = new URLSearchParams();
+      // const raw_token = token.access_token;
+      // const formData = new URLSearchParams();
 
-      formData.append("token", raw_token);
-      const resp = await fetch("http://localhost:3000/token/revoke", {
-        method: "POST",
-        body: formData,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      });
+      // formData.append("token", raw_token);
+      // const resp = await fetch("http://localhost:3000/token/revoke", {
+      //   method: "POST",
+      //   body: formData,
+      //   headers: {
+      //     "Content-Type": "application/x-www-form-urlencoded",
+      //   },
+      // });
 
-      console.log(resp);
+      // console.log(resp);
 
       return;
     },
@@ -46,8 +46,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
 // @ts-ignore
     async session({ session, user, token, newSession, trigger }) {
-      console.log("Session");
-      console.log(session, user, token, newSession, trigger);
+      console.log("Session", session, user, token, newSession, trigger);
       if (session && token) {
         if (token.user_id) {
           session.user.id = token.user_id;
@@ -62,7 +61,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     // @ts-ignore
     async jwt({ token, user, account, profile, trigger, session }) {
       console.log("JWT");
-      console.log(token, user, account, profile, trigger, session);
+      console.log(trigger);
       if (trigger === "signIn") {
         token.user_id = user.id;
         token.access_token = user.access_token;

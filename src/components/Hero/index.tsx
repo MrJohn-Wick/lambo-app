@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { HeroSection, MainWrapperStyled, TextSectionStyled } from './styled';
 // import { useTime, useTransform } from "framer-motion";
 import { ADAPTIVE } from '@/utils/window';
+import Link from 'next/link';
 
 const HeroTitle = styled.h1`
   background: linear-gradient(
@@ -70,6 +71,9 @@ const Hero: React.FC = () => {
           <HeroDescription>
             Learn, share, stream, communicate, find friends from all continents.
           </HeroDescription>
+          <div>
+            <Link href="/login">Login</Link>
+          </div>
         </TextSectionStyled>
       </HeroSection>
     </MainWrapperStyled>

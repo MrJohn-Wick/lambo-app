@@ -1,5 +1,4 @@
-"use client";
-
+import React from 'react';
 import Feature from '@/components/Feature';
 import Layout from '@/components/Layout';
 import PrivateSessionsIcon from '@/assets/private-sessions.svg';
@@ -7,6 +6,9 @@ import { logout } from '@/actions/logout';
 
 
 export const Profile: React.FC = () => {
+  // const session = useSession();
+  // console.log([ "Profile", session ]);
+
   return (
     <Layout>
       <Feature 
