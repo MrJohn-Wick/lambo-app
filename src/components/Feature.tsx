@@ -49,7 +49,7 @@ const FeatureSection = styled.section<{ isReversed?: boolean }>`
 
   ${ADAPTIVE.minWidth.desktop} {
     margin-top: 100px;
-    gap: 150px;
+    /* gap: 150px; */
     width: 1036px;
     flex-direction: ${props => props.isReversed ? 'row-reverse' : 'row'};
   }
@@ -64,6 +64,7 @@ const Content = styled.div`
   ${ADAPTIVE.minWidth.desktop} {
     max-width: 100%;
     margin-top: 40px;
+    gap: 24px;
   }
 `;
 
@@ -73,30 +74,38 @@ const Title = styled.h2`
     font-size: 32px;
     font-style: normal;
     font-weight: 500;
-    line-height: 24px;
+    /* line-height: 24px; */
     letter-spacing: -0.96px;
+    text-align: center;
   }
 
   ${ADAPTIVE.minWidth.desktop} {
     color: #fff;
     font-size: 48px;
     font-family: Poppins, sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 0;
+    text-align: left;
   }
 `;
 
 const Description = styled.p`
   color: rgba(255, 255, 255, 0.7);
-  margin-top: 24px;
-  font: 400 16px/19px Poppins, sans-serif;
+  /* margin-top: 24px; */
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  font-style: normal;
 
   ${ADAPTIVE.minWidth.mobile} {
     margin: 0;
+    text-align: center;
   }
 
   ${ADAPTIVE.minWidth.desktop} {
-    margin-top: 24px;
+    /* margin-top: 24px; */
+    text-align: left;
+    width: 400px;
   }
 `;
 
@@ -111,27 +120,27 @@ const ImageColumn = styled.div`
 
 const ImageStyled = styled(Image)`
   ${ADAPTIVE.minWidth.mobile} {
-    width: 300px;
+    width: 100%;
   }
 
   ${ADAPTIVE.minWidth.desktop} {
-    width: 488px;
+    width: auto;
     aspect-ratio: auto 488 / 396;
     /* height: 396px; */
   }
 `;
 
-const EllipseStyled = styled.div`
-  position: absolute;
-  width: 264px;
-  height: 70px;
-  flex-shrink: 0;
-  border-radius: 264px;
-  background: var(--brand-aqua-blue-dark-1000, #55b4e7);
-  background-position: center;
-  filter: blur(55px);
-  top: 40px;
-`;
+// const EllipseStyled = styled.div`
+//   position: absolute;
+//   width: 264px;
+//   height: 70px;
+//   flex-shrink: 0;
+//   border-radius: 264px;
+//   background: var(--brand-aqua-blue-dark-1000, #55b4e7);
+//   background-position: center;
+//   filter: blur(55px);
+//   top: 40px;
+// `;
 
 const ContentColumn = styled.div`
   display: flex;
@@ -143,19 +152,25 @@ const ContentColumn = styled.div`
     width: 80%;
   }
 
+  ${ADAPTIVE.minWidth.tablet} {
+    width: auto;
+  }
+
   ${ADAPTIVE.minWidth.desktop} {
     order: 1;
-    width: auto;
+    /* width: auto; */
   }
 `;
 
-const MotionDivStyled = styled(motion.div)`
+const MotionDivStyled = styled(motion.div)<{ isReversed?: boolean }>`
+  
   ${ADAPTIVE.minWidth.mobile} {
     order: 1;
   }
 
   ${ADAPTIVE.minWidth.desktop} {
     order: 2;
+    ${props => props.isReversed ? 'margin-right: auto' : 'margin-left: auto'};
   }
 `;
 
@@ -178,7 +193,8 @@ const Feature: React.FC<FeatureProps> = ({ title, description, imageSrc, imageAl
             <Description>{description}</Description>
           </Content>
         </ContentColumn>
-        <MotionDivStyled variants={isMobileView || isTabletView ? {} : cardVariants}>
+        {/* @ts-ignore */}
+        <MotionDivStyled variants={isMobileView || isTabletView ? {} : cardVariants} isReversed={isReversed}>
           {/* @ts-ignore */}
           <ImageColumn isReversed={isReversed}>
             {/* @ts-ignore */}

@@ -1,4 +1,5 @@
 import { ADAPTIVE } from '@/utils/window';
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -63,7 +64,7 @@ const LinkWrapper = styled.div`
   line-height: 120%;
 `;
 
-const FooterLink = styled.a`
+const FooterLink = styled(Link)`
   font-family: Poppins, sans-serif;
   text-decoration: none;
   color: inherit;
@@ -80,8 +81,8 @@ const Footer: React.FC = () => (
         <LogoIcon loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/96a95d61285d70d93998d4123f700bb6fa776ce5ae4fd304ec54678bb749df4e?apiKey=ee013e4e62354fc39704ec724055f765&" alt="Logo Icon" />
       </LogoWrapper>
       <LinkWrapper>
-        <FooterLink href="/terms">Terms of service</FooterLink>
-        <FooterLink href="/privacy">Privacy Policy</FooterLink>
+        <FooterLink href="/terms-service">Terms of service</FooterLink>
+        <FooterLink href="/privacy-policy">Privacy Policy</FooterLink>
       </LinkWrapper>
     </FooterContent>
   </FooterWrapper>
