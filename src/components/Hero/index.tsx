@@ -76,6 +76,9 @@ const Hero: React.FC = () => {
           <div>
             <Link href="/login">Login</Link>
           </div>
+          <div>
+            <Link href="/register">Registration</Link>
+          </div>
         </TextSectionStyled>
       </HeroSection>
     </MainWrapperStyled>
