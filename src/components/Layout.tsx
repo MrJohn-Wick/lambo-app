@@ -6,6 +6,13 @@ import Footer from './Footer';
 import { Poppins } from "next/font/google";
 import { ADAPTIVE } from '@/utils/window';
 
+import { ThemeProvider } from 'styled-components';
+import GlobalStyles from '../app/GlobalStyled';
+
+const theme = {
+  // Add any theme variables here
+};
+
 const poppins = Poppins({
   subsets: ['latin'],
   variable: '--font-poppins',
@@ -40,13 +47,16 @@ const ContentWrapper = styled.main`
 `;
 
 const Layout: React.FC<LayoutProps> = ({ children }) => (
-  <LayoutWrapper className={`${poppins.variable} font-poppins`}>
-    <ContentWrapper>
-      <Header />
-      {children}
-      <Footer />
-    </ContentWrapper>
-  </LayoutWrapper>
+  <ThemeProvider theme={theme}>
+    <GlobalStyles />
+    <LayoutWrapper className={`${poppins.variable} font-poppins`}>
+      <ContentWrapper>
+        <Header />
+        {children}
+        <Footer />
+      </ContentWrapper>
+    </LayoutWrapper>
+  </ThemeProvider>
 );
 
 export default Layout;
