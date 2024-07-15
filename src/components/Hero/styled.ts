@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 
 
 export const MainWrapperStyled = styled.div`
+
   ${ADAPTIVE.minWidth.mobile} {
     padding: 0;
     margin-bottom: -100px;
@@ -16,6 +17,7 @@ export const MainWrapperStyled = styled.div`
 
   ${ADAPTIVE.minWidth.tablet} {
     padding: 0;
+    margin-bottom: 0px;
 
     video {
       position: absolute;
@@ -32,6 +34,8 @@ export const MainWrapperStyled = styled.div`
       margin-top: 0px;
       z-index: 5;
     }
+
+    padding-bottom: 100px;
   }
 
   border-radius: 50%;
@@ -66,7 +70,7 @@ export const TextSectionStyled = styled.div`
 
     h1 {
       text-align: center;
-      font-family: Poppins;
+      font-family: Poppins, sans-serif;
       font-size: 56px;
       font-style: normal;
       font-weight: 500;
@@ -76,7 +80,7 @@ export const TextSectionStyled = styled.div`
 
     p {
       text-align: center;
-      font-family: Poppins;
+      font-family: Poppins, sans-serif;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
@@ -94,7 +98,7 @@ export const TextSectionStyled = styled.div`
 
     h1 {
       text-align: center;
-      font-family: Poppins;
+      font-family: Poppins, sans-serif;
       font-size: 56px;
       font-style: normal;
       font-weight: 500;
@@ -104,7 +108,7 @@ export const TextSectionStyled = styled.div`
 
     p {
       text-align: center;
-      font-family: Poppins;
+      font-family: Poppins, sans-serif;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
@@ -122,7 +126,7 @@ export const TextSectionStyled = styled.div`
 
     h1 {
       text-align: center;
-      font-family: Poppins;
+      font-family: Poppins, sans-serif;
       font-size: 96px;
       font-style: normal;
       font-weight: 500;
@@ -132,14 +136,14 @@ export const TextSectionStyled = styled.div`
 
     p {
       text-align: center;
-      font-family: Poppins;
+      font-family: Poppins, sans-serif;
       font-size: 24px;
       font-style: normal;
       font-weight: 400;
       line-height: 120%; /* 28.8px */
       letter-spacing: -0.24px;
 
-      width: auto;
+      width: 450px;
     }
   }
 `;

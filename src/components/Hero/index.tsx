@@ -41,7 +41,6 @@ const HeroDescription = styled.p`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 486px;
   margin: 24px 0 114px;
   font: 24px/29px Poppins, sans-serif;
 `;
