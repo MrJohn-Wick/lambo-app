@@ -3,6 +3,7 @@
 import { AuthError } from '@auth/core/errors';
 import { signIn } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { redirect, RedirectType } from 'next/navigation';
 
 export const login = async (
   values: { email: string; password: string },
@@ -11,17 +12,20 @@ export const login = async (
   const { email, password } = values;
 
   console.log('start credential login');
+  let url = "";
 
   try {
     console.log('start credential login');
-    const l = await signIn("credentials", {
+    url = await signIn("credentials", {
       email,
       password,
-      // redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
-      redirectTo: DEFAULT_LOGIN_REDIRECT,
+      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+      redirect: false,
     });
+    console.log("finish credetials", url);
+
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
@@ -32,8 +36,16 @@ export const login = async (
           return { error: "Something went wrong!" };
       }
     }
-
-    return { error: "Something went wrong too!" };
     // throw error;
   }
+  if (url) {
+    console.log('redirect');
+    // return { 
+    //   success: true,
+    //   redirect: url,
+    // }
+    redirect('profile', RedirectType.push);
+  }
+
+  return { error: "Something went wrong too!" };
 };

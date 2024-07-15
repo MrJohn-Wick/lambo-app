@@ -6,8 +6,8 @@ import { LoginSchema } from "@/schemas/login";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 import { login } from "@/actions/login";
-
 import { AuthWrapper } from "./auth-wrapper";
+
 
 export function LoginForm() {
   const [isPending] = useTransition();
@@ -30,8 +30,7 @@ export function LoginForm() {
 
     //login
     const { email, password } = validatedValues.data;
-
-    login({ email, password });
+    await login({ email, password });
   };
 
   return (

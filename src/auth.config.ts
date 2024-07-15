@@ -12,7 +12,7 @@ export const authConfig = {
       },
       authorize: async (credentials) => {
         const { email, password } = credentials;
-
+        
         const formData = new URLSearchParams();
 
         formData.append("grant_type", "password");

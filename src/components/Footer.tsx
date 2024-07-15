@@ -1,3 +1,5 @@
+'use client';
+
 import { ADAPTIVE } from '@/utils/window';
 import React from 'react';
 import styled from 'styled-components';

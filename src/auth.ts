@@ -17,7 +17,6 @@ declare module "next-auth" {
 
 // @ts-ignore
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  debug: true,
   session: { strategy: "jwt" },
   pages: {
     signIn: "/login",
@@ -49,9 +48,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       console.log("Session", session, user, token, newSession, trigger);
       if (session && token) {
         if (token.user_id) {
+          // @ts-ignore
           session.user.id = token.user_id;
         }
+        // @ts-ignore
         session.user.access_token = token.access_token;
+        // @ts-ignore
         session.user.refresh_token = token.refresh_token;
       }
       console.log("Session ready", session);
@@ -64,7 +66,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       console.log(trigger);
       if (trigger === "signIn") {
         token.user_id = user.id;
+        // @ts-ignore
         token.access_token = user.access_token;
+        // @ts-ignore
         token.refresh_token = user.refresh_token;
       }
 

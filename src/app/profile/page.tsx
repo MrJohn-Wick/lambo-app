@@ -1,13 +1,16 @@
+'use client';
+
 import React from 'react';
 import Feature from '@/components/Feature';
 import Layout from '@/components/Layout';
 import PrivateSessionsIcon from '@/assets/private-sessions.svg';
 import { logout } from '@/actions/logout';
+import { useSession } from 'next-auth/react';
 
 
-export const Profile: React.FC = () => {
-  // const session = useSession();
-  // console.log([ "Profile", session ]);
+const Profile: React.FC = () => {
+  const session = useSession();
+  console.log([ "Profile", session ]);
 
   return (
     <Layout>
@@ -17,6 +20,7 @@ export const Profile: React.FC = () => {
         imageSrc={PrivateSessionsIcon}
         imageAlt="Private sessions"
       />
+      <div>{ session.data?.user && session.data.user.email }</div>
       <button onClick={() => { logout() }}>Logout</button>
     </Layout>
   );
