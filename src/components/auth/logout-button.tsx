@@ -9,8 +9,8 @@ interface LogoutButtonProps {
 export function LogoutButton({ children }: LogoutButtonProps) {
   return (
     <button
-      onClick={async () => {
-        await logout();
+      onClick={() => {
+        logout();
       }}
     >
       {children}
