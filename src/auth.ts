@@ -1,4 +1,3 @@
-// @ts-ignore
 import NextAuth, { DefaultSession } from "next-auth";
 
 import { authConfig } from "./auth.config";
@@ -15,16 +14,14 @@ declare module "next-auth" {
   }
 }
 
-// @ts-ignore
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: { strategy: "jwt" },
   pages: {
     signIn: "/login",
   },
   events: {
-    // @ts-ignore
-    async signOut({ token }) {
-      console.log("SignOut", token);
+    // async signOut({ token }) {
+    //   console.log("SignOut", token);
       // const raw_token = token.access_token;
       // const formData = new URLSearchParams();
 
@@ -39,36 +36,28 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       // console.log(resp);
 
-      return;
-    },
+    //   return;
+    // },
   },
   callbacks: {
-// @ts-ignore
     async session({ session, user, token, newSession, trigger }) {
       console.log("Session", session, user, token, newSession, trigger);
       if (session && token) {
-        if (token.user_id) {
-          // @ts-ignore
-          session.user.id = token.user_id;
+        if (token.sub) {
+          session.user.id = token.sub;
         }
-        // @ts-ignore
         session.user.access_token = token.access_token;
-        // @ts-ignore
         session.user.refresh_token = token.refresh_token;
       }
-      console.log("Session ready", session);
 
       return session;
     },
-    // @ts-ignore
     async jwt({ token, user, account, profile, trigger, session }) {
-      console.log("JWT");
-      console.log(trigger);
+      console.log("JWT", trigger);
+
       if (trigger === "signIn") {
         token.user_id = user.id;
-        // @ts-ignore
         token.access_token = user.access_token;
-        // @ts-ignore
         token.refresh_token = user.refresh_token;
       }
 

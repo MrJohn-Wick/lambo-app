@@ -1,7 +1,10 @@
-import jwt from 'jsonwebtoken';
-// @ts-ignore
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+
+type AuthPayload = {
+  email?: string;
+} & JwtPayload;
 
 export const authConfig = {
   providers: [
@@ -33,12 +36,10 @@ export const authConfig = {
 
         if (response.ok && data?.access_token) {
           const { access_token, refresh_token } = data;
-          const decoded = jwt.verify(access_token, "secret");
+          const decoded = jwt.verify(access_token, "secret") as AuthPayload;
 
           return {
-            // @ts-ignore
-            id: decoded.user_id,
-            // @ts-ignore
+            id: decoded.sub,
             email: decoded.email,
             access_token,
             refresh_token,
