@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 import { AuthWrapper } from "./auth-wrapper";
 
-const backendUrl = process.env.BACKEND_URL || "http://localhost:3000";
+const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3000";
 
 export function RegisterForm() {
   const [isPending] = useTransition();
@@ -19,20 +19,25 @@ export function RegisterForm() {
       email: "",
       password: "",
       confirmPassword: "",
+      firstname: "",
+      lastname: "",
+      birthday: "",
     },
   });
   const [error, setError] = useState<string | undefined>();
   const router = useRouter();
 
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
+    console.log("submit");
     const validatedValues = RegisterSchema.safeParse(values);
 
     if (!validatedValues.success) {
       // TODO: show errors
+      console.log(validatedValues.error);
       return;
     }
 
-    const { email, password, confirmPassword } = validatedValues.data;
+    const { email, password, confirmPassword, firstname, lastname, birthday } = validatedValues.data;
     const resp = await fetch(backendUrl + "/register", {
       method: "POST",
       headers: {
@@ -42,6 +47,9 @@ export function RegisterForm() {
         email,
         password,
         confirmPassword,
+        firstname,
+        lastname,
+        birthday,
       }),
     });
 
@@ -66,6 +74,18 @@ export function RegisterForm() {
           <div>
             <label>Email</label>
             <input {...form.register("email")} />
+          </div>
+          <div>
+            <label>Firstname</label>
+            <input {...form.register("firstname")} />
+          </div>
+          <div>
+            <label>Lastname</label>
+            <input {...form.register("lastname")} />
+          </div>
+          <div>
+            <label>Birthday</label>
+            <input {...form.register("birthday")} />
           </div>
           <div>
             <label>Password</label>
