@@ -1,3 +1,5 @@
+'use client';
+
 import { ADAPTIVE } from '@/utils/window';
 import Link from 'next/link';
 import React from 'react';

@@ -1,3 +1,4 @@
+'use client';
 import { ADAPTIVE } from "@/utils/window";
 import { styled } from "styled-components";
 
