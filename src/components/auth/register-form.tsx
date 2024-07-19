@@ -69,36 +69,76 @@ export function RegisterForm() {
       subtitle="Alredy have an account?"
       title="Sign Up"
     >
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col space-y-4">
-          <div>
-            <label>Email</label>
-            <input {...form.register("email")} />
-          </div>
-          <div>
-            <label>Firstname</label>
-            <input {...form.register("firstname")} />
-          </div>
-          <div>
-            <label>Lastname</label>
-            <input {...form.register("lastname")} />
-          </div>
-          <div>
-            <label>Birthday</label>
-            <input {...form.register("birthday")} />
-          </div>
-          <div>
-            <label>Password</label>
-            <input {...form.register('password')} />
-          </div>
-          <div>
-            <label>Confirm password</label>
-            <input {...form.register('confirmPassword')} />
-          </div>
-          <div className="text-danger-500">{error}</div>
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="flex flex-col space-y-4">
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-400"
+                >Email</label>
+                <div className="mt-2">
+                  <input {...form.register("email")} />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-400"
+                >Firstname</label>
+                <div className="mt-2">
+                  <input {...form.register("firstname")} />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-400"
+                >Lastname</label>
+                <div className="mt-2">
+                  <input {...form.register("lastname")} />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-400"
+                >Birthday</label>
+                <div className="mt-2">
+                  <input {...form.register("birthday")} />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-400"
+                >Password</label>
+                <div className="mt-2">
+                  <input {...form.register('password')} />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-400"
+                >Confirm password</label>
+                <div className="mt-2">
+                  <input {...form.register('confirmPassword')} />
+                </div>
+              </div>
+              <div className="text-danger-500">{error}</div>
+            </div>
+            <button
+              type="submit"
+              disabled={isPending}
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Sign in
+            </button>
+          </form>
         </div>
-        <input type="submit" disabled={isPending} />
-      </form>
+      </div>
     </AuthWrapper>
   );
 }
